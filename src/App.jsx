@@ -1,17 +1,13 @@
 import "./App.css";
-import { Button } from "react-bootstrap";
-import { FaFileInvoiceDollar } from "react-icons/fa6";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-  toast.success("Helloo AP Bye Bye YCP");
   return (
     <>
+      <AppRoutes />
+
       <ToastContainer />
-      <Button>
-        Click Me <FaFileInvoiceDollar />
-      </Button>
-      <h1>Coming Soon...</h1>
     </>
   );
 }
