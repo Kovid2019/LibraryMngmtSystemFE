@@ -22,3 +22,23 @@ export const activateNewUserApi = async (payload) => {
   };
   return apiProcessor(obj);
 };
+export const signinUserApi = async (payload) => {
+  const obj = {
+    url: authApiEP + "/login",
+    method: "post",
+    payload,
+    showToast: true,
+  };
+  return apiProcessor(obj);
+};
+
+//Request new accessJWT API.
+export const fetchNewAccessJWTApi = async () => {
+  const obj = {
+    url: authApiEP + "/renew-jwt",
+    method: "get",
+    isPrivateCall: true,
+    isRefreshJWT: true,
+  };
+  return apiProcessor(obj);
+};

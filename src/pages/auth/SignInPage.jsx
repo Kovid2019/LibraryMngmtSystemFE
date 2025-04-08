@@ -2,13 +2,43 @@ import Button from "react-bootstrap/Button";
 import { Card, Form } from "react-bootstrap";
 import { CustomInput } from "../../components/customInput/CustomInput";
 import useForm from "../../hooks/useForm";
-
-const initialState = {};
+import { signinUserApi } from "../../services/authApi";
+import { fetchUserApi } from "../../features/user/userApi";
+import { autoLoginUser, fetchUserAction } from "../../features/user/userAction";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+const initialState = {
+  email: "a2@a.com",
+  password: "Roh@123",
+};
 const SignInPage = () => {
   const { form, handleOnChange } = useForm(initialState);
-  const handleOnSubmit = (e) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.userInfo);
+
+  useEffect(() => {
+    user?._id ? navigate("/user") : dispatch(autoLoginUser());
+  }, [user?._id, navigate, dispatch]);
+
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     console.log(form);
+    if (form.email && form.password) {
+      const { payload } = await signinUserApi(form);
+      if (payload?.accessJWT) {
+        sessionStorage.setItem("accessJWT", payload.accessJWT);
+        localStorage.setItem("refreshJWT", payload.refreshJWT);
+
+        //Call API to get user profile
+        dispatch(fetchUserAction());
+      }
+
+      // TODO : Get user and redirect to dashboard.
+    } else {
+      alert("Please enter email and password");
+    }
   };
   return (
     <div className="signIn-page d-flex justify-content-center align-items-center">
@@ -22,8 +52,8 @@ const SignInPage = () => {
               type="email"
               required
               placeholder="name@email.com"
-              value={form.email}
               onChange={handleOnChange}
+              value={form.email}
             />
             <CustomInput
               label="Password"
@@ -31,8 +61,8 @@ const SignInPage = () => {
               type="password"
               required
               placeholder="*******"
-              value={form.password}
               onChange={handleOnChange}
+              value={form.password}
             />
             <div className="d-grid">
               <Button type="submit">Sign In</Button>
