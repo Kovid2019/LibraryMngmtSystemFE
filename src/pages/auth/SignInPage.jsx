@@ -1,12 +1,11 @@
 import Button from "react-bootstrap/Button";
-import { Card, Form } from "react-bootstrap";
-import { CustomInput } from "../../components/customInput/CustomInput";
+import { Card, Form, Spinner } from "react-bootstrap";
+import { CustomInput } from "@components/customInput/CustomInput";
 import useForm from "../../hooks/useForm";
-import { signinUserApi } from "../../services/authApi";
-import { fetchUserApi } from "../../features/user/userApi";
-import { autoLoginUser, fetchUserAction } from "../../features/user/userAction";
+import { signinUserApi } from "@services/authApi";
+import { autoLoginUser, fetchUserAction } from "@features/user/userAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 const initialState = {
   email: "a2@a.com",
@@ -16,10 +15,21 @@ const SignInPage = () => {
   const { form, handleOnChange } = useForm(initialState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const showLoaderRef = useRef(true);
   const { user } = useSelector((state) => state.userInfo);
 
   useEffect(() => {
     user?._id ? navigate("/user") : dispatch(autoLoginUser());
+    if (
+      sessionStorage.getItem("accessJWT") ||
+      localStorage.getItem("refreshJWT")
+    ) {
+      setTimeout(() => {
+        showLoaderRef.current = false;
+      }, 2000);
+    } else {
+      showLoaderRef.current = false;
+    }
   }, [user?._id, navigate, dispatch]);
 
   const handleOnSubmit = async (e) => {
@@ -40,6 +50,14 @@ const SignInPage = () => {
       alert("Please enter email and password");
     }
   };
+
+  if (showLoaderRef.current) {
+    return (
+      <div className="vh-100 d-flex justify-content-center align-items-center">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    );
+  }
   return (
     <div className="signIn-page d-flex justify-content-center align-items-center">
       <Card style={{ width: "18rem" }}>

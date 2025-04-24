@@ -1,10 +1,9 @@
-import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { CustomInput } from "../../components/customInput/CustomInput";
+import { CustomInput } from "@components/customInput/CustomInput";
 import { signUpInputs } from "../../assets/customInputs/userSignupInputs";
 import useForm from "../../hooks/useForm";
-import { signUpNewUserApi } from "../../services/authApi";
+import { signUpNewUserApi } from "@services/authApi";
 
 const initialState = {};
 /* Chat 
@@ -17,8 +16,7 @@ const initialState = {};
   /* GPT */
 
 const SignUpPage = () => {
-  const { form, setForm, handleOnChange, passwordErrors } =
-    useForm(initialState);
+  const { form, handleOnChange, passwordErrors } = useForm(initialState);
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     //console.log(form);

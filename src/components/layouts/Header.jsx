@@ -6,11 +6,22 @@ import logo from "../../assets/lms-logo-wide.png";
 import { IoMdHome } from "react-icons/io";
 import { SiGnuprivacyguard } from "react-icons/si";
 import { FaSignInAlt } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AiFillDashboard } from "react-icons/ai";
 import { IoLogOut } from "react-icons/io5";
+import { logOutApi } from "../../services/authApi";
+import { setUser } from "../../features/user/userSlice";
 export const Header = () => {
   const { user } = useSelector((state) => state.userInfo);
+  const dispatch = useDispatch();
+  const handleOnLogout = () => {
+    //Call API to logout from the backend
+    logOutApi();
+    //Logout from the frontend
+    sessionStorage.removeItem("accessJWT");
+    localStorage.removeItem("refreshJWT");
+    dispatch(setUser({}));
+  };
   return (
     <Navbar expand="md" className="bg-dark" variant="dark">
       <Container>
@@ -28,7 +39,7 @@ export const Header = () => {
                 <Link className="nav-link" to="/user">
                   Dashboard <AiFillDashboard />
                 </Link>
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/" onClick={handleOnLogout}>
                   LogOut <IoLogOut />
                 </Link>
               </>

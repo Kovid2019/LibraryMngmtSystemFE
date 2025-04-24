@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Alert, Spinner } from "react-bootstrap";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { activateNewUserApi } from "../../services/authApi";
+import { activateNewUserApi } from "@services/authApi";
 const VerifyUser = () => {
   const [isPending, setIsPending] = useState(true);
   const [searchParams] = useSearchParams();
@@ -11,7 +11,7 @@ const VerifyUser = () => {
   console.log(searchParams);
   const sessionId = searchParams.get("sessionId");
   const t = searchParams.get("t");
-  console.log(sessionId, t);
+
   useEffect(() => {
     if (sessionId && t && shouldFetchRef.current) {
       //Call API
@@ -26,7 +26,6 @@ const VerifyUser = () => {
       setTimeout(() => navigate("/login"), 3000);
     }
   }, [sessionId, t, response.status, navigate]);
-  console.log(response);
   return (
     <div className="py-5 p-5">
       {isPending && (
