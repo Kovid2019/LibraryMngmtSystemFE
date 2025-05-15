@@ -6,7 +6,7 @@ import { signinUserApi } from "@services/authApi";
 import { autoLoginUser, fetchUserAction } from "@features/user/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const initialState = {
   email: "a2@a.com",
   password: "Roh@123",
@@ -15,11 +15,14 @@ const SignInPage = () => {
   const { form, handleOnChange } = useForm(initialState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const showLoaderRef = useRef(true);
-  const { user } = useSelector((state) => state.userInfo);
 
+  const showLoaderRef = useRef(true);
+  const location = useLocation();
+  console.log(location);
+  const { user } = useSelector((state) => state.userInfo);
+  const path = location?.state?.from ?? "/user";
   useEffect(() => {
-    user?._id ? navigate("/user") : dispatch(autoLoginUser());
+    user?._id ? navigate(path) : dispatch(autoLoginUser());
     if (
       sessionStorage.getItem("accessJWT") ||
       localStorage.getItem("refreshJWT")
