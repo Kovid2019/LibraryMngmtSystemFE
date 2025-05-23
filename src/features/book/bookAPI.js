@@ -16,3 +16,37 @@ export const postNewBookApi = async (payload) => {
   const result = await apiProcessor(obj);
   return result;
 };
+
+// Call API processor to fetch all books for "Admin"
+export const adminFetchAllBookApi = async () => {
+  const obj = {
+    url: bookApiEP + "/admin",
+    method: "get",
+
+    isPrivateCall: true,
+  };
+  const result = await apiProcessor(obj);
+  return result;
+};
+
+export const updateBookApi = async (payload) => {
+  const obj = {
+    url: bookApiEP,
+    method: "put",
+    showToast: true,
+    isPrivateCall: true,
+    payload,
+  };
+  const result = await apiProcessor(obj);
+  return result;
+};
+export const deleteBookApi = async (_id) => {
+  const obj = {
+    url: bookApiEP + "/" + _id,
+    method: "delete",
+    showToast: true,
+    isPrivateCall: true,
+  };
+  const result = await apiProcessor(obj);
+  return result;
+};

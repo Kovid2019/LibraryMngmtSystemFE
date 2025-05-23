@@ -52,3 +52,66 @@ export const newBookInputs = [
     placeholder: "Book description",
   },
 ];
+export const editBookInputs = [
+  {
+    label: "Title",
+    name: "title",
+    type: "text",
+    required: true,
+    placeholder: "JavaScript: The Good Parts",
+  },
+  {
+    label: "Slug",
+    name: "slug",
+    type: "text",
+    required: true,
+    disabled: true,
+    placeholder: "javascript-the-good-parts",
+  },
+  {
+    label: "Year",
+    name: "year",
+    type: "Number",
+    min: "1901",
+    max: new Date().getFullYear(),
+    required: true,
+    placeholder: "2025",
+  },
+  {
+    label: "Author",
+    name: "author",
+    type: "text",
+    required: true,
+  },
+  {
+    label: "Image Url",
+    name: "imgUrl",
+    type: "url",
+  },
+  {
+    label: "ISBN*",
+    name: "isbn",
+    disabled: true,
+    type: "number",
+    required: true,
+  },
+
+  {
+    label: "Genre",
+    name: "genre",
+    type: "text",
+    required: true,
+  },
+  {
+    label: "Expected Available Date",
+    name: "expectedAvailable",
+    type: "date",
+  },
+  {
+    label: "Description",
+    name: "description",
+    type: "text",
+    as: "textarea",
+    required: true,
+  },
+];
