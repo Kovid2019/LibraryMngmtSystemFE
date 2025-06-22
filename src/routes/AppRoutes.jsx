@@ -19,6 +19,8 @@ import {
 } from "../pages";
 import { DefaultLayout } from "@components/layouts/DefaultLayout";
 import { UserLayout } from "@components/layouts/UserLayout";
+import AllBooks from "@pages/books/AllBooks";
+import Search from "@pages/books/Search";
 // import { UserLayout } from "@/components/layouts/UserLayout";
 
 const AppRoutes = () => {
@@ -27,11 +29,14 @@ const AppRoutes = () => {
       {/* Public Pages */}
       <Route path="/" element={<DefaultLayout />}>
         <Route index element={<HomePage />} />
+        <Route path="all-books" element={<AllBooks />} />
+        <Route path="search" element={<Search />} />
+        <Route path="book/:slug" element={<BookLandingPage />} />
         <Route path="signup" element={<SignUpPage />} />
         <Route path="activate-user" element={<VerifyUser />} />
         <Route path="login" element={<SignInPage />} />
         <Route path="forget-password" element={<ForgetPasswordPage />} />
-        {/* <Route path="book-landing" element={<BookLandingPage />} /> */}
+        <Route path="*" element={<h1>404 Page Not Found</h1>} />
       </Route>
 
       {/* Private Pages */}
@@ -40,7 +45,6 @@ const AppRoutes = () => {
         <Route path="books" element={<Books />} />
         <Route path="new-book" element={<NewBookPage />} />
         <Route path="edit-book/:_id" element={<EditBookPage />} />
-        <Route path="book-landing" element={<BookLandingPage />} />
         <Route path="reviews" element={<ReviewPage />} />
         <Route path="all" element={<UserPage />} />
         <Route path="profile" element={<Profile />} />

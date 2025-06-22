@@ -6,7 +6,7 @@ export const CustomInput = ({ label, passRef, value, ...rest }) => {
   if (rest.type === "date") {
     valueData = value ? value.slice(0, 10) : null;
   }
-  console.log(valueData);
+  // console.log(valueData);
   return (
     <Form.Group className="mb-3">
       <Form.Label>{label}</Form.Label>

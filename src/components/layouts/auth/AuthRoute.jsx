@@ -4,7 +4,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 export const AuthRoute = ({ children }) => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   //Real User data
   const { user } = useSelector((state) => state.userInfo);
   const isAuth = user?._id;

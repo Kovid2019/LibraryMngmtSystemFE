@@ -11,5 +11,5 @@
       "@hooks/*": ["src/hooks/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "main.jsx"]
 }

@@ -22,12 +22,12 @@ export const newBookInputs = [
     required: true,
     placeholder: "Douglas Crockford",
   },
-  {
-    label: "Image Url",
-    name: "imgUrl",
-    type: "url",
-    placeholder: "https://example.com/image.jpg",
-  },
+  // {
+  //   label: "Image Url",
+  //   name: "imgUrl",
+  //   type: "url",
+  //   placeholder: "https://example.com/image.jpg",
+  // },
   {
     label: "ISBN*",
     name: "isbn",
@@ -83,11 +83,11 @@ export const editBookInputs = [
     type: "text",
     required: true,
   },
-  {
-    label: "Image Url",
-    name: "imgUrl",
-    type: "url",
-  },
+  // {
+  //   label: "Image Url",
+  //   name: "imgUrl",
+  //   type: "url",
+  // },
   {
     label: "ISBN*",
     name: "isbn",

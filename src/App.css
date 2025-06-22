@@ -10,3 +10,40 @@
   background: url(./assets/login-page-image.jpg) center no-repeat;
   background-size: cover;
 }
+
+/* Carousel Style  */
+
+.carousel {
+  height: 60vh;
+}
+.carousel img {
+  height: 60vh;
+  object-fit: cover;
+}
+
+.carousel-caption-bg {
+  background-color: rgba(128, 128, 128, 0.439);
+  backdrop-filter: blur(5px);
+}
+
+/* End Carousel Style  */
+
+.breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+}
+
+/* Review Tab Section  */
+.review-item {
+  /* background: #d8d8d8; */
+  margin-bottom: 2rem;
+}
+.review-item .left div {
+  background: white;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid grey;
+}
+.listView {
+  text-decoration: none;
+}

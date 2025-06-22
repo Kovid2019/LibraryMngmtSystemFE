@@ -9,7 +9,7 @@ export const BookTable = () => {
   useEffect(() => {
     setDisplayBook(books);
   }, [books]);
-  console.log(books);
+  // console.log(books);
   const handleOnSearch = (e) => {
     const { value } = e.target;
     const tempArg = books.filter((book) =>
@@ -55,7 +55,12 @@ export const BookTable = () => {
                   {status}
                 </td>
                 <td>
-                  <img src={imgUrl} alt="" width="60px" />
+                  <img
+                    src={import.meta.env.VITE_BASE_API_URL + imgUrl.slice(6)}
+                    // src={imgUrl}
+                    alt=""
+                    width="60px"
+                  />
                 </td>
                 <td>{title}</td>
                 <td>

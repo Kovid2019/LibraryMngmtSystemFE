@@ -50,3 +50,21 @@ export const deleteBookApi = async (_id) => {
   const result = await apiProcessor(obj);
   return result;
 };
+
+// Call API processor to fetch all public books.
+export const fetchAllPublicBookApi = async () => {
+  const obj = {
+    url: bookApiEP,
+    method: "get",
+  };
+  const result = await apiProcessor(obj);
+  return result;
+};
+export const fetchSinglePublicBookApi = async (slug) => {
+  const obj = {
+    url: bookApiEP + "/public/" + slug,
+    method: "get",
+  };
+  const result = await apiProcessor(obj);
+  return result;
+};
