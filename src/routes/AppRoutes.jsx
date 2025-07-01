@@ -21,6 +21,7 @@ import { DefaultLayout } from "@components/layouts/DefaultLayout";
 import { UserLayout } from "@components/layouts/UserLayout";
 import AllBooks from "@pages/books/AllBooks";
 import Search from "@pages/books/Search";
+import Cart from "@pages/cart/CartPage";
 // import { UserLayout } from "@/components/layouts/UserLayout";
 
 const AppRoutes = () => {
@@ -36,6 +37,7 @@ const AppRoutes = () => {
         <Route path="activate-user" element={<VerifyUser />} />
         <Route path="login" element={<SignInPage />} />
         <Route path="forget-password" element={<ForgetPasswordPage />} />
+        <Route path="cart" element={<Cart />} />
         <Route path="*" element={<h1>404 Page Not Found</h1>} />
       </Route>
 

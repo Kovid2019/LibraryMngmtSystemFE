@@ -15,10 +15,13 @@ import { Link, useParams } from "react-router-dom";
 
 import { Star } from "@components/star/Star";
 import { Reviews } from "@components/reviews/Reviews";
+import { setCart } from "@features/cart/cartSlice";
+
 const BookLandingPage = () => {
   const { slug } = useParams();
   const { selectedBook } = useSelector((state) => state.bookInfo);
-  const [book, setBook] = useState({});
+  const { cart } = useSelector((state) => state.cartInfo);
+
   const dispatch = useDispatch();
   const [showUrl, setShowUrl] = useState(0);
 
@@ -31,6 +34,13 @@ const BookLandingPage = () => {
 
     dispatch(fetchSinglePublicBookAction(slug));
   }, [dispatch, slug]);
+
+  const handleOnAddToCart = () => {
+    dispatch(setCart(selectedBook));
+  };
+
+  const isBookInTheCart = cart.find((item) => item._id === selectedBook._id);
+
   return (
     <Container>
       <Row className="my-3">
@@ -103,7 +113,15 @@ const BookLandingPage = () => {
                   </div>
                   <div className="bottom">
                     <hr />
-                    <Button variant="dark">Add to Borrowing List</Button>
+                    <Button
+                      variant="dark"
+                      onClick={handleOnAddToCart}
+                      disabled={isBookInTheCart}
+                    >
+                      {isBookInTheCart
+                        ? "Book is already in the cart"
+                        : "Add to Borrowing List"}
+                    </Button>
                   </div>
                 </div>
               </Col>

@@ -20,7 +20,7 @@ const bookSlice = createSlice({
       state.publicBooks = action.payload;
     },
     setSelectedBook: (state, action) => {
-      state.selectedBook = action.payload;
+      state.selectedBook = action.payload || {};
     },
   },
 });

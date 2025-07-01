@@ -47,3 +47,18 @@
 .listView {
   text-decoration: none;
 }
+
+/* Cart icon style  */
+.cart-count {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: red;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -5px;
+  right: -5px;
+  transition: all 0.5s;
+}

@@ -17,8 +17,10 @@ import { InputGroup } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 import { RiBookShelfFill } from "react-icons/ri";
 import { useRef } from "react";
+import { BsCart3 } from "react-icons/bs";
 export const Header = () => {
   const { user } = useSelector((state) => state.userInfo);
+  const { cart } = useSelector((state) => state.cartInfo);
   const dispatch = useDispatch();
   const searchRef = useRef("");
   const navigate = useNavigate();
@@ -86,6 +88,12 @@ export const Header = () => {
                   </Link>
                 </>
               )}
+              <Link to="/cart" className="nav-link position-relative">
+                <div className="cart-count position-absolute">
+                  {cart.length}
+                </div>
+                <BsCart3 className="fs-3" />
+              </Link>
             </Nav>
           </div>
         </Navbar.Collapse>
